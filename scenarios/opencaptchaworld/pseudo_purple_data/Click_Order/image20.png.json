@@ -1,0 +1,24 @@
+{
+  "puzzle_type": "Click_Order",
+  "puzzle_id": "image20.png",
+  "answer": [
+    [
+      440,
+      130
+    ],
+    [
+      140,
+      700
+    ],
+    [
+      470,
+      680
+    ],
+    [
+      150,
+      110
+    ]
+  ],
+  "elapsed_time": 0.5,
+  "timestamp": "2025-11-23T22:35:57.740002"
+}
