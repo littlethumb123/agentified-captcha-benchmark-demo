@@ -1,0 +1,19 @@
+{
+  "puzzle_type": "Patch_Select",
+  "puzzle_id": "image1.jpg",
+  "answer": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    11,
+    12,
+    13
+  ],
+  "elapsed_time": 0.5,
+  "timestamp": "2025-11-23T22:35:57.743830"
+}

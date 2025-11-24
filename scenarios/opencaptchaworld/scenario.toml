@@ -1,0 +1,21 @@
+[green_agent]
+endpoint = "http://127.0.0.1:9010"
+cmd = "python3 scenarios/opencaptchaworld/opencaptchaworld_judge.py --host 127.0.0.1 --port 9010"
+
+[[participants]]
+role = "opencaptcha_solver"
+endpoint = "http://127.0.0.1:9020"
+cmd = "python3 scenarios/opencaptchaworld/opencaptchaworld_solver.py --host 127.0.0.1 --port 9020 --mode ground_truth"
+
+[config]
+# List of puzzle types to test (empty list or omit to test all types)
+# Available types: Dice_Count, Geometry_Click, Rotation_Match, Slide_Puzzle,
+#                  Unusual_Detection, Image_Recognition, Bingo, Image_Matching,
+#                  Patch_Select, Dart_Count, Object_Match, Select_Animal,
+#                  Coordinates, Path_Finder, Place_Dot, Connect_icon,
+#                  Click_Order, Hold_Button, Misleading_Click, Pick_Area
+puzzle_types = []  # Empty means test all types
+
+# Example: Test only specific types
+# puzzle_types = ["Dice_Count", "Geometry_Click", "Image_Recognition"]
+
