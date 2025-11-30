@@ -21,6 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const puzzleType = urlParams.get('type');
     const puzzleId = urlParams.get('id');
 
+    const testPuzzlesParam = urlParams.get('test_puzzles');
+    const isTestMode = testPuzzlesParam !== null;
+    let puzzleQueue = [];
+    let currentPuzzleIndex = -1;
+
+    if (isTestMode) {
+        puzzleQueue = testPuzzlesParam.split(',').map(p => {
+            const [type, id] = p.split(':');
+            return { type, id };
+        });
+        currentPuzzleIndex = 0;
+    }
+
     // Event listeners
     if (downloadBtn) {
         downloadBtn.addEventListener('click', downloadResult);
@@ -28,13 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userAnswerInput) {
         userAnswerInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                downloadResult();
+                if(isTestMode) {
+                    printAndNextPuzzle();
+                } else {
+                    downloadResult();
+                }
             }
         });
     }
 
-    // Auto-load puzzle if parameters are present
-    if (puzzleType && puzzleId) {
+    // Auto-load puzzle
+    if (isTestMode) {
+        if (puzzleQueue.length > 0) {
+            const firstPuzzle = puzzleQueue[0];
+            loadPuzzle(firstPuzzle.type, firstPuzzle.id);
+        } else {
+            showError('Test mode is on, but no puzzles were provided in the test_puzzles parameter.');
+        }
+    } else if (puzzleType && puzzleId) {
         loadPuzzle(puzzleType, puzzleId);
     } else {
         showError('Missing URL parameters. Please provide type and id parameters.<br>Example: /get_puzzle?type=Dice_Count&id=dice1.png');
@@ -44,6 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function showError(message) {
         puzzleContainer.innerHTML = `<div class="error-message">${message}</div>`;
         puzzleContainer.style.display = 'block';
+    }
+
+    function printAndNextPuzzle() {
+        if (!currentPuzzle) {
+            alert('No puzzle loaded');
+            return;
+        }
+    
+        const result = currentPuzzle;
+    
+        fetch('/api/save_puzzle_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(result),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Puzzle data saved');
+                currentPuzzleIndex++;
+                if (currentPuzzleIndex < puzzleQueue.length) {
+                    const nextPuzzle = puzzleQueue[currentPuzzleIndex];
+                    loadPuzzle(nextPuzzle.type, nextPuzzle.id);
+                } else {
+                    showError('All puzzles completed!');
+                }
+            } else {
+                alert('Error saving puzzle data: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error saving puzzle data:', error);
+            alert('Error saving puzzle data');
+        });
     }
 
     function loadPuzzle(puzzleType, puzzleId) {
@@ -84,12 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-attach event listeners
         if (newDownloadBtn) {
-            newDownloadBtn.addEventListener('click', () => downloadResult(puzzleType, puzzleId));
+            if(isTestMode) {
+                newDownloadBtn.textContent = 'Print & Next';
+                newDownloadBtn.addEventListener('click', printAndNextPuzzle);
+            } else {
+                newDownloadBtn.addEventListener('click', () => downloadResult(puzzleType, puzzleId));
+            }
         }
         if (newUserAnswerInput) {
             newUserAnswerInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    downloadResult(puzzleType, puzzleId);
+                    if(isTestMode) {
+                        printAndNextPuzzle();
+                    } else {
+                        downloadResult(puzzleType, puzzleId);
+                    }
                 }
             });
         }
