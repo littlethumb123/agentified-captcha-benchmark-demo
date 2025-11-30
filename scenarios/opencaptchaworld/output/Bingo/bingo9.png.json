@@ -1,0 +1,7 @@
+{
+  "puzzle_type": "Bingo",
+  "image_path": "/captcha_data/Bingo/bingo9.png",
+  "puzzle_id": "bingo9.png",
+  "prompt": "Please click two images to exchange their position to line up the same images to a line, you can only exchange the images once.",
+  "input_type": "bingo_swap"
+}

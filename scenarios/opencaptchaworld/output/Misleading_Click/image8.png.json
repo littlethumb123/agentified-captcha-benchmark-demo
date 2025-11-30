@@ -1,0 +1,7 @@
+{
+  "puzzle_type": "Misleading_Click",
+  "image_path": "/captcha_data/Misleading_Click/image8.png",
+  "puzzle_id": "image8.png",
+  "prompt": "Click the image to continue.",
+  "input_type": "click"
+}

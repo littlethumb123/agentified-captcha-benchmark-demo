@@ -1,0 +1,23 @@
+{
+  "puzzle_type": "Image_Recognition",
+  "image_path": "/captcha_data/Image_Recognition/images15",
+  "puzzle_id": "images15",
+  "prompt": "Select all images containing boat, then click submit",
+  "input_type": "image_grid",
+  "images": [
+    "/captcha_data/Image_Recognition/images15/1.jpg",
+    "/captcha_data/Image_Recognition/images15/2.jpg",
+    "/captcha_data/Image_Recognition/images15/3.jpg",
+    "/captcha_data/Image_Recognition/images15/4.jpg",
+    "/captcha_data/Image_Recognition/images15/5.jpg",
+    "/captcha_data/Image_Recognition/images15/6.jpg",
+    "/captcha_data/Image_Recognition/images15/7.jpg",
+    "/captcha_data/Image_Recognition/images15/8.jpg",
+    "/captcha_data/Image_Recognition/images15/9.jpg"
+  ],
+  "grid_size": [
+    3,
+    3
+  ],
+  "question": "Find the pictures that include boat"
+}

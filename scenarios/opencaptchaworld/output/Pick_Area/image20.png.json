@@ -1,0 +1,7 @@
+{
+  "puzzle_type": "Pick_Area",
+  "image_path": "/captcha_data/Pick_Area/image20.png",
+  "puzzle_id": "image20.png",
+  "prompt": "Click on the center of the largest area outlined by the dotted line",
+  "input_type": "click"
+}

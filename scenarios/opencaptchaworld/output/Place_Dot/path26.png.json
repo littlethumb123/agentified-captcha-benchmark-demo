@@ -1,0 +1,7 @@
+{
+  "puzzle_type": "Place_Dot",
+  "image_path": "/captcha_data/Place_Dot/path26.png",
+  "puzzle_id": "path26.png",
+  "prompt": "Click to place a Dot at the end of the car's path",
+  "input_type": "place_dot"
+}

@@ -1,0 +1,7 @@
+{
+  "puzzle_type": "Dice_Count",
+  "image_path": "/captcha_data/Dice_Count/dice1.png",
+  "puzzle_id": "dice1.png",
+  "prompt": "Sum up the numbers on all the dice",
+  "input_type": "number"
+}

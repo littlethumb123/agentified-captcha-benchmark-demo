@@ -149,7 +149,7 @@ def main():
                 for proc in procs:
                     if proc.poll() is not None:
                         print(f"Agent exited with code {proc.returncode}")
-                        break
+                        return
                     time.sleep(0.5)
         else:
             client_proc = subprocess.Popen(

@@ -1,0 +1,23 @@
+{
+  "puzzle_type": "Image_Recognition",
+  "image_path": "/captcha_data/Image_Recognition/images1",
+  "puzzle_id": "images1",
+  "prompt": "Select all images containing a car, then click submit",
+  "input_type": "image_grid",
+  "images": [
+    "/captcha_data/Image_Recognition/images1/1.png",
+    "/captcha_data/Image_Recognition/images1/2.png",
+    "/captcha_data/Image_Recognition/images1/3.png",
+    "/captcha_data/Image_Recognition/images1/4.png",
+    "/captcha_data/Image_Recognition/images1/5.png",
+    "/captcha_data/Image_Recognition/images1/6.png",
+    "/captcha_data/Image_Recognition/images1/7.png",
+    "/captcha_data/Image_Recognition/images1/8.png",
+    "/captcha_data/Image_Recognition/images1/9.png"
+  ],
+  "grid_size": [
+    3,
+    3
+  ],
+  "question": "Find the pictures that include a car"
+}

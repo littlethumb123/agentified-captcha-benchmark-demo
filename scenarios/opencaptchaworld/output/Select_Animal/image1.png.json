@@ -1,0 +1,11 @@
+{
+  "puzzle_type": "Select_Animal",
+  "image_path": "/captcha_data/Select_Animal/image1.png",
+  "puzzle_id": "image1.png",
+  "prompt": "Pick a fox",
+  "input_type": "select_animal",
+  "grid_size": [
+    2,
+    3
+  ]
+}

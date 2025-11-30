@@ -1,0 +1,8 @@
+{
+  "puzzle_type": "Hold_Button",
+  "image_path": "/captcha_data/Hold_Button/image6.png",
+  "puzzle_id": "image6.png",
+  "prompt": "Hold the button until it finishes loading.",
+  "input_type": "hold_button",
+  "hold_time": 3
+}

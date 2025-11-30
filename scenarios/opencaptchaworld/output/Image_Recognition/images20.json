@@ -1,0 +1,23 @@
+{
+  "puzzle_type": "Image_Recognition",
+  "image_path": "/captcha_data/Image_Recognition/images20",
+  "puzzle_id": "images20",
+  "prompt": "Select all images containing airplane, then click submit",
+  "input_type": "image_grid",
+  "images": [
+    "/captcha_data/Image_Recognition/images20/1.jpg",
+    "/captcha_data/Image_Recognition/images20/2.jpg",
+    "/captcha_data/Image_Recognition/images20/3.jpg",
+    "/captcha_data/Image_Recognition/images20/4.jpg",
+    "/captcha_data/Image_Recognition/images20/5.jpg",
+    "/captcha_data/Image_Recognition/images20/6.jpg",
+    "/captcha_data/Image_Recognition/images20/7.jpg",
+    "/captcha_data/Image_Recognition/images20/8.jpg",
+    "/captcha_data/Image_Recognition/images20/9.jpg"
+  ],
+  "grid_size": [
+    3,
+    3
+  ],
+  "question": "Find the pictures that include airplane"
+}

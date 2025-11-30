@@ -1,0 +1,23 @@
+{
+  "puzzle_type": "Image_Recognition",
+  "image_path": "/captcha_data/Image_Recognition/images8",
+  "puzzle_id": "images8",
+  "prompt": "Select all images containing hydrant, then click submit",
+  "input_type": "image_grid",
+  "images": [
+    "/captcha_data/Image_Recognition/images8/1.png",
+    "/captcha_data/Image_Recognition/images8/2.png",
+    "/captcha_data/Image_Recognition/images8/3.png",
+    "/captcha_data/Image_Recognition/images8/4.png",
+    "/captcha_data/Image_Recognition/images8/5.png",
+    "/captcha_data/Image_Recognition/images8/6.png",
+    "/captcha_data/Image_Recognition/images8/7.png",
+    "/captcha_data/Image_Recognition/images8/8.png",
+    "/captcha_data/Image_Recognition/images8/9.png"
+  ],
+  "grid_size": [
+    3,
+    3
+  ],
+  "question": "Find the pictures that include hydrant"
+}

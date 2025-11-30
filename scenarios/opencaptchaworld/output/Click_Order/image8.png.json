@@ -1,0 +1,8 @@
+{
+  "puzzle_type": "Click_Order",
+  "image_path": "/captcha_data/Click_Order/image8.png",
+  "puzzle_id": "image8.png",
+  "prompt": "Click the icons in order as shown in the reference image.",
+  "input_type": "click_order",
+  "order_image": "/captcha_data/Click_Order/order7.png"
+}
