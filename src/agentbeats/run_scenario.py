@@ -163,22 +163,47 @@ def main():
     except KeyboardInterrupt:
         pass
 
+    # Mac version 
+    # finally:
+    #     print("\nShutting down...")
+    #     for p in procs:
+    #         if p.poll() is None:
+    #             try:
+    #                 os.killpg(p.pid, signal.SIGTERM)
+    #             except ProcessLookupError:
+    #                 pass
+    #     time.sleep(1)
+    #     for p in procs:
+    #         if p.poll() is None:
+    #             try:
+    #                 os.killpg(p.pid, signal.SIGKILL)
+    #             except ProcessLookupError:
+    #                 pass
+    
+    # Windows version 
     finally:
         print("\nShutting down...")
         for p in procs:
             if p.poll() is None:
                 try:
-                    os.killpg(p.pid, signal.SIGTERM)
-                except ProcessLookupError:
+                    # Windows-compatible process termination
+                    if sys.platform == "win32":
+                        p.terminate()
+                    else:
+                        os.killpg(p.pid, signal.SIGTERM)
+                except (ProcessLookupError, AttributeError):
                     pass
         time.sleep(1)
         for p in procs:
             if p.poll() is None:
                 try:
-                    os.killpg(p.pid, signal.SIGKILL)
-                except ProcessLookupError:
+                    # Windows-compatible process killing
+                    if sys.platform == "win32":
+                        p.kill()
+                    else:
+                        os.killpg(p.pid, signal.SIGKILL)
+                except (ProcessLookupError, AttributeError):
                     pass
-
 
 if __name__ == "__main__":
     main()
