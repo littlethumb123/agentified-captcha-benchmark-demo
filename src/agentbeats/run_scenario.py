@@ -5,6 +5,7 @@ from pathlib import Path
 import tomllib
 import httpx
 from dotenv import load_dotenv
+import webbrowser
 
 from a2a.client import A2ACardResolver
 
@@ -95,6 +96,8 @@ def parse_toml(scenario_path: str) -> dict:
     }
 
 
+import webbrowser
+
 def main():
     parser = argparse.ArgumentParser(description="Run agent scenario")
     parser.add_argument("scenario", help="Path to scenario TOML file")
@@ -102,7 +105,12 @@ def main():
                         help="Show agent stdout/stderr")
     parser.add_argument("--serve-only", action="store_true",
                         help="Start agent servers only without running evaluation")
+    parser.add_argument("--test", type=str,
+                        help="Run in test mode with a comma-separated list of puzzles (e.g., 'type1:id1,type2:id2')")
     args = parser.parse_args()
+
+    if args.test:
+        args.serve_only = True
 
     cfg = parse_toml(args.scenario)
 
@@ -144,6 +152,14 @@ def main():
             return
 
         print("Agents started. Press Ctrl+C to stop.")
+
+        if args.test:
+            host = cfg["green_agent"]["host"]
+            port = cfg["green_agent"]["port"]
+            url = f"http://{host}:{port}/get_puzzle?test_puzzles={args.test}"
+            print(f"Opening test URL: {url}")
+            webbrowser.open(url)
+
         if args.serve_only:
             while True:
                 for proc in procs:
@@ -178,6 +194,7 @@ def main():
                     os.killpg(p.pid, signal.SIGKILL)
                 except ProcessLookupError:
                     pass
+
 
 
 if __name__ == "__main__":

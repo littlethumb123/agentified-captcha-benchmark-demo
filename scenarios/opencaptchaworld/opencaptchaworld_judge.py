@@ -179,6 +179,29 @@ async def api_get_puzzle(request):
     return JSONResponse(response_data)
 
 
+async def api_save_puzzle_data(request):
+    """API endpoint to save puzzle data to a file."""
+    try:
+        data = await request.json()
+        puzzle_type = data.get('puzzle_type')
+        puzzle_id = data.get('puzzle_id')
+
+        if not puzzle_type or not puzzle_id:
+            return JSONResponse({'error': 'puzzle_type and puzzle_id are required'}, status_code=400)
+
+        output_dir = Path(__file__).parent / 'output' / puzzle_type
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        file_path = output_dir / f"{puzzle_id}.json"
+        with open(file_path, 'w') as f:
+            json.dump(data, f, indent=2)
+
+        return JSONResponse({'success': True, 'message': f'Puzzle data saved to {file_path}'})
+    except Exception as e:
+        logger.error(f"Error saving puzzle data: {e}")
+        return JSONResponse({'error': 'Failed to save puzzle data'}, status_code=500)
+
+
 def _safe_path(*parts: str) -> Path | None:
     """Resolve a path and ensure it stays within the dataset directory."""
     base = DATA_DIR.resolve()
@@ -676,6 +699,7 @@ async def main():
         # Add puzzle server routes
         app.add_route('/get_puzzle', serve_puzzle_page)
         app.add_route('/api/get_puzzle', api_get_puzzle)
+        app.add_route('/api/save_puzzle_data', api_save_puzzle_data, methods=['POST'])
         app.add_route('/api/types', api_get_types)
         app.add_route('/api/list_puzzles', api_list_puzzles)
         app.add_route('/captcha_data/{captcha_type}/{filename:path}', serve_captcha_file)
